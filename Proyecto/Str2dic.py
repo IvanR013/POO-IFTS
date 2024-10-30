@@ -1,6 +1,7 @@
+import json
 class Str2Dic():
    
-    def __init__(self, schema: str, separator= ','):
+    def __init__(self, schema: str, separator = ','):
         
         self.separator = separator
         
@@ -18,7 +19,7 @@ class Str2Dic():
             
             raise ValueError("La longitud de los datos no coincide con el schema.")
 
-
+        
 
 
 
