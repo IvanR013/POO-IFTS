@@ -1,5 +1,13 @@
 import json
+
 class Str2Dic():
+    
+    '''
+    Esta clase toma un parámetro "schema" (como un CSV) y lo pasa a un formato de diccionario para devolverlo así. 
+    
+    Si falla, devuelve un mensaje de error.
+    
+    '''
    
     def __init__(self, schema: str, separator = ','):
         
