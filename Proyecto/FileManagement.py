@@ -2,6 +2,13 @@
 
 class FileManager():
        
+       '''
+       Esta Clase toma un archivo y, según el método instanciado, se puede editar o abrir el archivo.
+       
+       -- En desarrollo --
+       
+       '''
+       
        def __init__(self, file):
               
               self.file = file
@@ -19,3 +26,17 @@ class FileManager():
               except Exception as err:
     
                  print(f"Ocurrió un error al escribir en el archivo: {err}")
+                 
+       def file_reader(self, contenido):
+              
+              try:
+                     with open (self.filename, 'r') as file:
+   
+                      file.read(contenido)
+
+    
+                     print(f"Se abrió el archivo {self.filename}: {contenido}")
+    
+              except Exception as err:
+    
+                 print(f"Ocurrió un error al abrir el archivo: {err}")

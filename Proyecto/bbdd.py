@@ -14,6 +14,7 @@ class Documento:
         return self.contenido.get(clave, None)  
 
     def modificar_valor(self, clave, valor):
+        
         """Modifica o agrega un valor a la clave en el contenido"""
         self.contenido[clave] = valor
 
@@ -62,7 +63,12 @@ print(o.buscar_documento(1))
 
 # Ej 3
 class Bbddocumental:
+    '''
+    Una representación de cómo una base de datos puede funcionar pero con objetos en python.
     
+    Permite crear, eliminar o mostrar las colecciones generadas.
+    
+    '''
     
     def __init__(self):
         
