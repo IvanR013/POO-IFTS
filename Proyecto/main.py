@@ -1,5 +1,7 @@
 from .Clases.bbdd import *
 
+#T.P. parte final: Uso de las clases.
+
 def mostrar_menu():
   
     print("\n--- Base de Datos Documental ---")
@@ -23,7 +25,7 @@ def main():
    
     db = Bbddocumental("MiBaseDeDatos")
 
-    while True:
+    while True: #Bucle principal
        
         opcion = mostrar_menu()
         

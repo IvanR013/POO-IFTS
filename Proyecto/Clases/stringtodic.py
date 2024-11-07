@@ -1,4 +1,4 @@
-
+#TP parte 4: String to Dicc.
 class Str2Dic():
     
     '''

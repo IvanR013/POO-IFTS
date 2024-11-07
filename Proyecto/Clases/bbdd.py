@@ -2,7 +2,6 @@ import json
 from Clases.stringtodic import *
 #TP, Parte 1:
 
-# Ej 1
 class Documento:
     
     def __init__(self, id, contenido=None):
@@ -16,6 +15,16 @@ class Documento:
         return self.contenido.get(clave, None)  
     
     def aJson(self):
+        '''
+        :Traspaso a Json:
+        
+        Primero, genera la estructura del diccionario con su título y contenido,
+        
+        Luego, inicializa la clave (El título) con el ID de cada documento.
+        
+        Hace lo mismo con el contenido del documento.
+        
+        '''
     
         diccio = {'Título':'', 'contenido': {}}
         diccio['Título'] = f'Dcoumento con ID: {self.id}'
@@ -33,8 +42,7 @@ class Documento:
         
         return f"Documento (id: {self.id}, contenido: {self.contenido})"
         
-        
-# Ej 2
+    
 
 class Coleccion:
    
@@ -44,7 +52,15 @@ class Coleccion:
         
         self.documentos = {}
     
-    def añadir_documento(self, documento: int):
+    def añadir_documento(self, documento):
+        '''
+        :Añadir Documento:
+        
+        Verifica que el tipo de dato correspondiente al documento sea correcto.
+        
+        Si es así, "documento" pasa a ser id.
+        
+        '''
         
         if (type(documento)) != Documento:
             
@@ -69,11 +85,6 @@ class Coleccion:
 
 
 
-o = Coleccion("Una breve historia del tiempo.")
-
-o.añadir_documento(1)
-
-print(buscar_documento(1))
 
 
 # Ej 3
@@ -92,6 +103,15 @@ class Bbddocumental:
 
     def crear_coleccion(self, nombre_coleccion):
         
+        '''
+        :Crear Colección:
+        
+        Revisa el diccionario de colecciones y, si ya no existe una colección idéntica a la que se quiere crear,
+        
+        se permite implementarla. 
+        
+        '''
+        
        
         if nombre_coleccion not in self.colecciones:
             
@@ -100,17 +120,43 @@ class Bbddocumental:
 
     def eliminar_colecion(self, nombre_coleccion):
         
-        if nombre_coleccion in self.colecciones:
+        '''
+        :Eliminar Colección:
+        
+        Busca la colección en el diccionario de colecciones
+        
+        
+        y, si lo encuentra, lo elimina. Si no, Lanza un error.
+        
+        '''
+        
+        try: 
+            if nombre_coleccion in self.colecciones:
+         
+                del self.colecciones[nombre_coleccion]
             
-            del self.colecciones[nombre_coleccion]
+            
+        except FileNotFoundError as err:
+            
+            print(f"No se encontró el archivo {err}") 
+
 
 
     def recuperar_colecion(self, nombre_coleccion):
+        
+        '''
+        :Recuperar Colección:
+        
+        Devuelve los elementos del diccionario colecciones.  
+        
+        '''
         
         return self.colecciones.get(nombre_coleccion, None)
     
     def importCSV(self, file_path, nombre_coleccion, schema, separator=','):
         """
+        :Importar CSV:
+        
         Importa datos de un archivo CSV y los agrega a una colección específica,
         usando una instancia de Str2Dic para convertir cada fila en un diccionario.
 
