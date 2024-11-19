@@ -37,9 +37,9 @@ def main():
     
     - nombre_doc = input("Ingrese el nombre del documento a crear: ") # Pido el nombre del doc
     
-    - db = Documento() # Instancio la clase, cosa que ya se hace en la línea 46.
+    - db = Documento() # Instancio la clase, cosa que ya se hace en la línea 46 por lo que no hace falta repetirlo.
     
-    - Documento.crear_doc(nombre_doc) # Llamo al método crear_doc pasandole el nombre del input
+    - db.crear_doc(nombre_doc) # Llamo al método crear_doc pasandole el nombre del input
     
     '''
    
