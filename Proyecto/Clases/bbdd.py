@@ -12,6 +12,7 @@ class Documento:
     def obtener_valor(self, clave):
        
         """Obtengo el valor correspondiente a una clave usando get()"""
+        
         return self.contenido.get(clave, None)  
     
     def aJson(self):
@@ -203,19 +204,11 @@ class Bbddocumental:
             raise f'No se pudo abrir el archivo debido a: {err}.'
 
 
-
     def __str__(self):
 
         return f"Colección {self.nombre_coleccion}, con {len(self.colecciones)} documentos."
         
-'''
-   -- INDEV --
-   
-- Solucionar y matchear file_path con el nombre del metodo que esta en string to dicc
-- matchear las f strings restantes
-- Verificar funcionalidad de las clases y métodos.
 
-''' 
 
  
  

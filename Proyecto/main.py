@@ -22,10 +22,30 @@ def mostrar_menu():
 
 
 def main():
+    
+    '''
+    Dependiendo la opción elegida en la función anterior, se instancia la clase correspondiente llamando al método correspondiente
+    a lo que quiero hacer.
+    
+    
+    Por ej: 
+    Si tengo una opcion para crear documento (que es la 1 supongamos), esa opcion pasa por los if's de la funcion main() y 
+    
+    dentro de ese mismo if, instancio la clase con el método que voy a usar.
+    
+    :En este caso: 
+    
+    - nombre_doc = input("Ingrese el nombre del documento a crear: ") # Pido el nombre del doc
+    
+    - db = Documento() # Instancio la clase, cosa que ya se hace en la línea 46.
+    
+    - Documento.crear_doc(nombre_doc) # Llamo al método crear_doc pasandole el nombre del input
+    
+    '''
    
     db = Bbddocumental("MiBaseDeDatos")
 
-    while True: #Bucle principal
+    while True: #Bucle principal inifinto
        
         opcion = mostrar_menu()
         
@@ -33,7 +53,7 @@ def main():
             
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
             
-            db.create_collection(nombre_coleccion)
+            db.crear_coleccion(nombre_coleccion)
             
             print(f"Colección '{nombre_coleccion}' creada.")
         
@@ -43,7 +63,7 @@ def main():
           
             ruta_csv = input("Ingrese la ruta del archivo CSV: ")
           
-            db.import_csv(nombre_coleccion, ruta_csv)
+            db.importCSV(nombre_coleccion, ruta_csv)
         
         elif opcion == "3":
           
@@ -51,13 +71,13 @@ def main():
           
             doc_id = input("Ingrese el ID del documento: ")
           
-            coleccion = db.get_collection(nombre_coleccion)
+            coleccion = db.buscar_documento(nombre_coleccion) # Busca el doc por su nombre
           
             if coleccion:
           
-                documento = coleccion.get_document(doc_id)
+                documento = coleccion.buscar_documento(doc_id) # ahora por su id
           
-                if documento:
+                if documento:# Si encuentra el doc, te lo muestra en formato diccionario, sino, te tira un error
                     print("Documento encontrado:")
                    
                     print(documento.to_json())
@@ -74,29 +94,29 @@ def main():
          
             doc_id = input("Ingrese el ID del documento a eliminar: ")
          
-            coleccion = db.get_collection(nombre_coleccion)
+            coleccion = db.buscar_documento(nombre_coleccion) # Primero lo busca
          
-            if coleccion:
+            if coleccion: # y si lo encuentra, lo borra.
          
-                coleccion.delete_document(doc_id)
+                coleccion.eliminar_documento(doc_id)
         
         elif opcion == "5":
           
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
           
-            coleccion = db.get_collection(nombre_coleccion)
+            coleccion = db.recuperar_colecion(nombre_coleccion)
           
             if coleccion:
              
-                documentos = coleccion.list_documents()
+                documentos = coleccion.buscar_documento() 
           
                 if documentos:
           
-                    print("\n--- Lista de Documentos ---")
+                    print("\n--- Lista de Documentos ---") 
                     
-                    for doc in documentos:
+                    for i in documentos: # Itera en los resultados de buscarDocumento y los pasa a Json.
                         
-                        print(doc.to_json())
+                        print(i.to_json())
                      
                         print("-----------")
                    
@@ -106,7 +126,7 @@ def main():
                 
                     print("No hay documentos en la colección.")
         
-        elif opcion == "6":
+        elif opcion == "6": # Imprime un mensaje y sale del bucle.
  
             print("Saliendo del programa.")
  

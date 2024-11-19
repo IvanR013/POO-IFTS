@@ -1,12 +1,11 @@
-
+import os
 # TP Parte 2: Clase de manejo de archivos
 
 class FileManager():
        
        '''
        Esta Clase toma un archivo y, según el método instanciado, se puede editar o abrir el archivo.
-       
-       -- En desarrollo --
+
        
        '''
        
@@ -28,6 +27,7 @@ class FileManager():
     
                  print(f"Ocurrió un error al escribir en el archivo: {err}")
                  
+       
        def file_reader(self, contenido):
               
               try:
@@ -41,3 +41,16 @@ class FileManager():
               except Exception as err:
     
                  print(f"Ocurrió un error al abrir el archivo: {err}")
+                 
+       def FileDeleter(self):
+              
+           try:  
+                     if os.path.exists(self.file):
+                     
+                            os.remove(self.file)
+                     else:
+                            print(f"No se encontró el archivo {self.file}")
+                            
+           except Exception as err:
+                  
+                     print(f"No se encontró el archivo {self.file}, {err}")
