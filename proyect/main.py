@@ -1,4 +1,4 @@
-from .Clases.bbdd import *
+from Src.bbdd import *
 
 #T.P. parte final: Uso de las clases.
 
