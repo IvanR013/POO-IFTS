@@ -1,5 +1,5 @@
 import json
-from Clases.stringtodic import *
+from Src.stringtodic import *
 #TP, Parte 1:
 
 class Documento:
