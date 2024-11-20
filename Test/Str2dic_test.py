@@ -1,4 +1,4 @@
-from Proyecto.Str2dic import *
+from proyect.Src.stringtodic import *
 
 
 obj = Str2Dic('Nombre,Apellido,Edad,Mail')
