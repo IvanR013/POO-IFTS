@@ -69,7 +69,7 @@ def main():
           
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
           
-            doc_id = input("Ingrese el ID del documento: ")
+            doc_id = int(input("Ingrese el ID del documento: "))
           
             coleccion = db.buscar_documento(nombre_coleccion) # Busca el doc por su nombre
           
@@ -92,7 +92,7 @@ def main():
          
             nombre_coleccion = input("Ingrese el nombre de la colección: ")
          
-            doc_id = input("Ingrese el ID del documento a eliminar: ")
+            doc_id = int(input("Ingrese el ID del documento a eliminar: "))
          
             coleccion = db.buscar_documento(nombre_coleccion) # Primero lo busca
          
