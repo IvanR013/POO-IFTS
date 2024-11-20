@@ -16,27 +16,27 @@ class FileManager():
        def file_writer(self, contenido):
 
               try:
-                     with open (self.filename, 'w') as file:
+                     with open (self.file, 'w') as file:
    
                       file.write(contenido)
 
     
-                     print(f"Se escribió en {self.filename}: {contenido}")
+                     print(f"Se escribió en {self.file}: {contenido}")
     
               except Exception as err:
     
                  print(f"Ocurrió un error al escribir en el archivo: {err}")
                  
        
-       def file_reader(self, contenido):
+       def file_reader(self):
               
               try:
-                     with open (self.filename, 'r') as file:
+                     with open (self.file, 'r') as file:
    
-                      file.read(contenido)
+                      file.read()
 
     
-                     print(f"Se abrió el archivo {self.filename}: {contenido}")
+                     print(f"Se abrió el archivo {self.file}")
     
               except Exception as err:
     
@@ -48,9 +48,10 @@ class FileManager():
                      if os.path.exists(self.file):
                      
                             os.remove(self.file)
+                            print(f"El archivo {self.file} fué eliminado correctamente.")
                      else:
                             print(f"No se encontró el archivo {self.file}")
                             
            except Exception as err:
                   
-                     print(f"No se encontró el archivo {self.file}, {err}")
+                     print(f"Error: {err}. No se pudo eliminar el archivo {self.file}.")

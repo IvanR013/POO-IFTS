@@ -2,9 +2,26 @@
 class Str2Dic():
     
     '''
-    Esta clase toma un parámetro "schema" (como un CSV) y lo pasa a un formato de diccionario para devolverlo así. 
-    
-    Si falla, devuelve un mensaje de error.
+  
+    Esta clase convierte una fila de datos en formato de texto (como CSV) en un diccionario, 
+    usando un esquema proporcionado como claves.
+
+    Args:
+        schema (str o list): Esquema que se usará como claves del diccionario. Puede ser un string CSV 
+                             o una lista de claves.
+        separator (str): Separador que se usa para dividir la fila y el esquema. Por defecto es ','.
+
+    :Ejemplo:
+        
+       - schema = "id,name,age"
+        
+       - row = "1,John,30"
+        
+       - str2dic = Str2Dic(schema)
+        
+       - dic = str2dic.convert(row)
+        
+       - print(dic)  # {'id': '1', 'name': 'John', 'age': '30'}
     
     '''
    

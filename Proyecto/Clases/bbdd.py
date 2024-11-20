@@ -57,17 +57,17 @@ class Coleccion:
         '''
         :Añadir Documento:
         
-        Verifica que el tipo de dato correspondiente al documento sea correcto.
-        
-        Si es así, "documento" pasa a ser id.
+       El método añadir_documento recibe un parámetro llamado documento. Este parámetro debe ser un objeto de la clase Documento. Si el documento que se pasa al método no es una instancia de la clase Documento, se lanza una excepción con el mensaje "Doc incorrecto.".
+       
+       Esto es una forma de asegurarse de que solo se están añadiendo objetos del tipo correcto.
         
         '''
         
-        if (type(documento)) != Documento:
+        if not isinstance(documento, Documento):
             
-            raise Exception("Doc incorrecto.")
+            raise Exception("Doc incorrecto. Probá con otro.")
         
-        self.documentos[documento.id] = documento
+        self.documentos[documento.id] = documento # Asume que documento es una instancia de Coleccion y agarra la key del diccionario como id.
         
     def eliminar_documento(self, id_documento: int):
         
@@ -114,7 +114,7 @@ class Bbddocumental:
         '''
         
        
-        if nombre_coleccion not in self.colecciones:
+        if nombre_coleccion not in self.colecciones: # Si no habías creado antes una colección con el mismo nombre, podés crear otra como una instancia de la clase Colección.
             
             self.colecciones[nombre_coleccion] = Coleccion(nombre_coleccion)
         
@@ -131,16 +131,13 @@ class Bbddocumental:
         
         '''
         
-        try: 
-            if nombre_coleccion in self.colecciones:
+     
+        if nombre_coleccion in self.colecciones:
          
-                del self.colecciones[nombre_coleccion]
-            
-            
-        except FileNotFoundError as err:
-            
-            print(f"No se encontró el archivo {err}") 
-
+            del self.colecciones[nombre_coleccion]
+        else:
+                 
+            print(f"Error: No se pudo borrar la colección '{nombre_coleccion}' porque no la encontré.")
 
 
     def recuperar_colecion(self, nombre_coleccion):
@@ -148,7 +145,7 @@ class Bbddocumental:
         '''
         :Recuperar Colección:
         
-        Devuelve los elementos del diccionario colecciones.  
+        Devuelve los elementos del diccionario colecciones. Es como tirar un SELECT en SQL.  
         
         '''
         
@@ -168,21 +165,23 @@ class Bbddocumental:
         """
         parseador = Str2Dic(schema, separator)
         
-        try:
+        try: # Este try tiene 2 except que manejan los posibles errores al abrir el archivo. Los marco abajo con un "*".
 
             with open(file_path, mode='r', encoding = 'utf-8') as file:
                 
-             next(file)
             
-            for line in file:
-                try:
-                      # Convertir la línea en diccionario usando el parser
-                       
-                        documento = parseador.convert(line.strip())
+             for line in file:
+                 
+                try: # Este otro maneja los posibles errores una vez abierto el archivo.
+                      
+                       if line.strip(): # Se fija si hay líneas vacías.
+                            
+                            # Convertir la línea en diccionario usando el parser     
+                            documento = parseador.convert(line.strip())
                        
                         # Agregar el documento a la colección
                        
-                        Coleccion.agregar_documento(documento)
+                            self.colecciones[nombre_coleccion].añadir_documento(documento)
                 
                 except ValueError as e:
                 
@@ -190,23 +189,20 @@ class Bbddocumental:
                         
             print(f"Datos importados a la colección '{nombre_coleccion}' exitosamente.")
       
-        except FileNotFoundError:
+        except FileNotFoundError: # *
         
             print(f"Error: El archivo {file_path} no existe.")
         
-        except Exception as error:
+        except Exception as error: # *
         
             print(f"Se produjo un error al importar el archivo: {error}")    
 
 
-        except Exception as err:
-           
-            raise f'No se pudo abrir el archivo debido a: {err}.'
 
 
     def __str__(self):
 
-        return f"Colección {self.nombre_coleccion}, con {len(self.colecciones)} documentos."
+        return f"Esta Base de datos: {self.nombre_coleccion}, tiene {len(self.colecciones)} colecciones."
         
 
 
