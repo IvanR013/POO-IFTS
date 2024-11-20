@@ -145,11 +145,14 @@ class Bbddocumental:
         '''
         :Recuperar Colección:
         
-        Devuelve los elementos del diccionario colecciones. Es como tirar un SELECT en SQL.  
+        Devuelve los elementos del diccionario colecciones si es que existe. Es como tirar un SELECT en SQL.  
         
         '''
+        if nombre_coleccion in self.colecciones:
         
-        return self.colecciones.get(nombre_coleccion, None)
+            return self.colecciones[nombre_coleccion]
+        
+        return f"No se encontró la colección: '{nombre_coleccion}'."
     
     def importCSV(self, file_path, nombre_coleccion, schema, separator=','):
         """
