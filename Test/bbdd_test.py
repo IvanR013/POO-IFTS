@@ -9,6 +9,6 @@ Colección = Coleccion('documentos')
 
 Colección.añadir_documento(documentito1)
 
-print(Colección)
-
 Colección.añadir_documento(documentito2)
+
+print(Colección)
