@@ -93,7 +93,8 @@ class Bbddocumental:
     '''
     Una representación de cómo una base de datos puede funcionar pero con objetos en python.
     
-    Permite crear, eliminar o mostrar las colecciones generadas.
+    Permite crear, eliminar o mostrar las colecciones generadas. 
+    Tiene una relación de composición con Coleccion.
     
     '''
     
@@ -160,15 +161,16 @@ class Bbddocumental:
         
         Importa datos de un archivo CSV y los agrega a una colección específica,
         usando una instancia de Str2Dic para convertir cada fila en un diccionario.
+        Podríamos decir que compone a Str2Dic, ya que la instancia.
 
         :param file_path: Ruta del archivo CSV.
         :param nombre_coleccion: Nombre de la colección donde se importarán los datos.
         :param schema: Esquema para el parser de CSV.
-        :param separator: Separador de las columnas en el CSV (por defecto es coma).
+        :param separator: Separador de las columnas en el CSV (por defecto es una coma).
         """
         parseador = Str2Dic(schema, separator)
         
-        try: # Este try tiene 2 except que manejan los posibles errores al abrir el archivo. Los marco abajo con un "*".
+        try: # Este try tiene 2 except que manejan los posibles errores al abrir el archivo. Te los marco abajo con un "*".
 
             with open(file_path, mode='r', encoding = 'utf-8') as file:
                 
