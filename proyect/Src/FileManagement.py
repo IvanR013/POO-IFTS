@@ -5,6 +5,10 @@ class FileManager():
        
        '''
        Esta Clase toma un archivo y, según el método instanciado, se puede editar o abrir el archivo.
+       
+       - Con file_writer(), podemos editar un archivo pasando como parámetro el contenido que deseamos aregarle.
+       - Al llamar a file_reader() lo abrimos.
+       - Y al usar FileDeleter() eliminamos el archivo referenciado. 
 
        
        '''
